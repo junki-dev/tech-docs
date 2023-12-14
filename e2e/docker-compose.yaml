@@ -1,0 +1,29 @@
+services:
+  e2e:
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./specs:/usr/src/app/specs
+    depends_on:
+      - docs
+      - crawlers
+      - mongo
+
+  docs:
+    image: tech-docs-api-docs
+    env_file:
+      - ../apps/docs/.env
+    command: yarn start:dev docs
+    ports:
+      - '8011:8011'
+
+  crawlers:
+    image: tech-docs-api-crawlers
+    env_file:
+      - ../apps/crawlers/.env
+    command: yarn start:dev crawlers
+    ports:
+      - '8021:8021'
+
+  mongo:
+    image: mongo
