@@ -1,0 +1,38 @@
+services:
+  docs:
+    build:
+      context: .
+      dockerfile: ./apps/docs/Dockerfile
+      target: development
+    command: yarn start:dev docs
+    env_file:
+      - ./apps/docs/.env
+    ports:
+      - '8011:8011'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+
+  crawlers:
+    build:
+      context: .
+      dockerfile: ./apps/crawlers/Dockerfile
+      target: development
+    command: yarn start:dev crawlers
+    env_file:
+      - ./apps/crawlers/.env
+    ports:
+      - '8021:8021'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - docs
+
+  mongo:
+    image: mongo:6.0.6
+    restart: always
+    ports:
+      - 27017:27017
+#    volumes:
+#      - ./mongodb:/data/db
