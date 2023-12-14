@@ -2,13 +2,18 @@ import { Injectable, Logger } from '@nestjs/common';
 
 import { DocsRepository } from './docs.repository';
 
-import { CreateDocDto, DocDto } from '@app/common';
+import { CreateDocDto, DocDocument, DocDto } from '@app/common';
+import { PaginationDto } from '@app/common/dto/pagination.dto';
 
 @Injectable()
 export class DocsService {
   private readonly logger = new Logger(DocsService.name);
 
   constructor(private readonly docsRepository: DocsRepository) {}
+
+  async getAllDocs(paginationDto: PaginationDto<DocDocument>): Promise<DocDto[]> {
+    return this.docsRepository.findWithPagination({}, paginationDto);
+  }
 
   async createDocs(createDocDto: CreateDocDto) {
     const filteredDocDtoList: DocDto[] = [];

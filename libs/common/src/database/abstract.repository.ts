@@ -3,6 +3,8 @@ import { FilterQuery, Model, Types, UpdateQuery } from 'mongoose';
 
 import { AbstractDocument } from './abstract.schema';
 
+import { PaginationDto } from '@app/common/dto/pagination.dto';
+
 export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   protected abstract readonly logger: Logger;
 
@@ -44,6 +46,20 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
 
   async find(filterQuery: FilterQuery<TDocument>) {
     return this.model.find(filterQuery, {}, { lean: true });
+  }
+
+  async findWithPagination(
+    filterQuery: FilterQuery<TDocument>,
+    paginationDto: PaginationDto<TDocument>,
+  ) {
+    const sortQuery: { [key: string]: 'asc' | 'desc' } = {};
+    sortQuery[paginationDto.sortField.toString()] = paginationDto.sortOrder;
+
+    return this.model
+      .find(filterQuery, {}, { lean: true })
+      .sort(sortQuery)
+      .limit(paginationDto.limit)
+      .skip(paginationDto.skip);
   }
 
   async findOneAndDelete(filterQuery: FilterQuery<TDocument>) {
