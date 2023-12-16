@@ -1,0 +1,29 @@
+steps:
+  # Docs
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'asia-northeast3-docker.pkg.dev/tech-docs-408301/docs/production',
+        '-f',
+        'apps/docs/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'asia-northeast3-docker.pkg.dev/tech-docs-408301/docs/production']
+
+  # Crawlers
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'asia-northeast3-docker.pkg.dev/tech-docs-408301/crawlers/production',
+        '-f',
+        'apps/crawlers/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-northeast3-docker.pkg.dev/tech-docs-408301/crawlers/production']
