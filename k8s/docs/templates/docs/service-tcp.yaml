@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: docs
+  name: docs-tcp
+spec:
+  ports:
+  - name: "tcp"
+    port: 8012
+    protocol: TCP
+    targetPort: 8012
+  selector:
+    app: docs
+  type: ClusterIP

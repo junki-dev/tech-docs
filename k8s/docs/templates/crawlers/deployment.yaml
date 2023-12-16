@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: crawlers
+  name: crawlers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crawlers
+  template:
+    metadata:
+      labels:
+        app: crawlers
+    spec:
+      containers:
+      - image: asia-northeast3-docker.pkg.dev/tech-docs-408301/crawlers/production
+        name: crawlers
+        env:
+          - name: HTTP_PORT
+            value: '8021'
+          - name: TARGET_COMPANIES
+            value: 'toss'
+          - name: TOSS_BASE_URI
+            value: 'https://toss.tech'
+          - name: INFLEARN_BASE_URI
+            value: 'https://tech.inflab.com/posts'
+          - name: DOCS_HOST
+            value: 'docs-tcp'
+          - name: DOCS_PORT
+            value: '8012'
+        ports:
+          - containerPort: 8021
+
