@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsDate, IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
 
 export class DocDto {
   @IsString()
@@ -14,4 +14,8 @@ export class DocDto {
   @IsUrl()
   @IsNotEmpty()
   originUri: string;
+
+  @IsUrl()
+  @IsOptional()
+  imageUri: string;
 }

@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
 import { AbstractDocument } from '@app/common';
 
@@ -12,7 +12,8 @@ export class PaginationDto<TDocument extends AbstractDocument> {
   @IsNumber()
   @IsNotEmpty()
   @Type(() => Number)
-  skip: number;
+  @Min(1)
+  page: number;
 
   @IsString()
   @IsOptional()

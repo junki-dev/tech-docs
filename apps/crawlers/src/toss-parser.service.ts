@@ -16,7 +16,9 @@ export class TossParserService implements AbstractCrawlerFactory {
       const body = $('body div div div div ul li a');
 
       const docs: DocDto[] = [];
+
       $(body).each((i, el) => {
+        const imageUri = $(el).find('img').attr('srcset');
         const path = $(el).attr('href');
         const title = $(el).find('div span').eq(0).text();
         const date = $(el).find('div span').eq(2).text();
@@ -26,6 +28,7 @@ export class TossParserService implements AbstractCrawlerFactory {
             title,
             createdAt: new Date(date),
             originUri: `${baseUri}${path}`,
+            imageUri,
           });
         }
       });

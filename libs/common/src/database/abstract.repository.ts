@@ -58,8 +58,8 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     return this.model
       .find(filterQuery, {}, { lean: true })
       .sort(sortQuery)
-      .limit(paginationDto.limit)
-      .skip(paginationDto.skip);
+      .skip((paginationDto.page - 1) * paginationDto.limit)
+      .limit(paginationDto.limit);
   }
 
   async findOneAndDelete(filterQuery: FilterQuery<TDocument>) {
