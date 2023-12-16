@@ -8,11 +8,12 @@ import { CrawlerFactory } from './crawler.factory';
 import { CrawlersService } from './crawlers.service';
 import { TossParserService } from './toss-parser.service';
 
-import { DOCS_SERVICE, LoggerModule } from '@app/common';
+import { DOCS_SERVICE, HealthModule, LoggerModule } from '@app/common';
 
 @Module({
   imports: [
     LoggerModule,
+    HealthModule,
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,

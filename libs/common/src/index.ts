@@ -4,3 +4,4 @@ export * from './models';
 export * from './dto';
 export * from './enum';
 export * from './constants';
+export * from './health';
