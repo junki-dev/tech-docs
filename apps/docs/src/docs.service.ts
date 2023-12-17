@@ -16,7 +16,7 @@ export class DocsService {
   }
 
   async createDocs(createDocDto: CreateDocDto) {
-    const filteredDocDtoList: DocDto[] = [];
+    const filteredDocDtoList: Array<Partial<DocDto>> = [];
     await Promise.all(
       createDocDto.docs.map(async (doc) => {
         const existDoc = await this.docsRepository.findOne({ originUri: doc.originUri });

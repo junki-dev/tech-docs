@@ -17,5 +17,5 @@ export class DocDto {
 
   @IsUrl()
   @IsOptional()
-  imageUri: string;
+  imageUri?: string;
 }

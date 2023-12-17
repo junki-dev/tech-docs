@@ -21,7 +21,7 @@ spec:
           - name: HTTP_PORT
             value: '8021'
           - name: TARGET_COMPANIES
-            value: 'toss'
+            value: 'toss inflearn'
           - name: TOSS_BASE_URI
             value: 'https://toss.tech'
           - name: INFLEARN_BASE_URI

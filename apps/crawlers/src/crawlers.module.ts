@@ -6,6 +6,7 @@ import * as Joi from 'joi';
 
 import { CrawlerFactory } from './crawler.factory';
 import { CrawlersService } from './crawlers.service';
+import { InflearnParserService } from './inflearn-parser.service';
 import { TossParserService } from './toss-parser.service';
 
 import { DOCS_SERVICE, HealthModule, LoggerModule } from '@app/common';
@@ -41,6 +42,6 @@ import { DOCS_SERVICE, HealthModule, LoggerModule } from '@app/common';
     ]),
   ],
   controllers: [],
-  providers: [CrawlersService, TossParserService, CrawlerFactory],
+  providers: [CrawlersService, TossParserService, InflearnParserService, CrawlerFactory],
 })
 export class CrawlersModule {}

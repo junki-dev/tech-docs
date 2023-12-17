@@ -19,7 +19,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     return (await createDocument.save()).toJSON() as unknown as TDocument;
   }
 
-  async saveAll(documents: Array<Omit<TDocument, '_id'>>) {
+  async saveAll(documents: Array<Omit<Partial<TDocument>, '_id'>>) {
     const createDocuments = await Promise.all(
       documents.map((document) => new this.model({ ...document, _id: new Types.ObjectId() })),
     );

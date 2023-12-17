@@ -12,5 +12,5 @@ export class CreateDocDto {
   @IsDefined({ each: true })
   @ValidateNested({ each: true })
   @Type(() => DocDto)
-  docs: DocDto[];
+  docs: Array<Partial<DocDto>>;
 }
