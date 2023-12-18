@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 
 import { DocsRepository } from './docs.repository';
+import { GetAllDocsDto } from '../dto/get-all-docs.dto';
 
-import { CreateDocDto, DocDocument, DocDto } from '@app/common';
-import { PaginationDto } from '@app/common/dto/pagination.dto';
+import { CreateDocDto, DocDocument, DocDto, PaginationDto } from '@app/common';
 
 @Injectable()
 export class DocsService {
@@ -11,8 +11,15 @@ export class DocsService {
 
   constructor(private readonly docsRepository: DocsRepository) {}
 
-  async getAllDocs(paginationDto: PaginationDto<DocDocument>): Promise<DocDto[]> {
-    return this.docsRepository.findWithPagination({}, paginationDto);
+  async getAllDocs(getAllDocsDto: GetAllDocsDto): Promise<DocDto[]> {
+    const paginationDto = getAllDocsDto as PaginationDto<DocDocument>;
+
+    const filterQuery: DocDocument = {} as DocDocument;
+    if (getAllDocsDto.company) {
+      filterQuery.company = getAllDocsDto.company;
+    }
+
+    return this.docsRepository.findWithPagination(filterQuery, paginationDto);
   }
 
   async createDocs(createDocDto: CreateDocDto) {
