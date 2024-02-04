@@ -26,7 +26,7 @@ export class InflearnParserService implements AbstractCrawlerFactory {
         if (path && title && date) {
           docs.push({
             title,
-            createdAt: new Date(date),
+            createdAt: new Date(date).toISOString(),
             originUri: `${originUri}${path}`,
           });
         }

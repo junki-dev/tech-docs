@@ -1,13 +1,18 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { EventPattern, Payload } from '@nestjs/microservices';
 
 import { DocsService } from './docs.service';
 import { GetAllDocsDto } from '../dto/get-all-docs.dto';
 
-import { CreateDocDto, DocDto } from '@app/common';
+import {
+  CreateDocDto,
+  DocDto,
+  DocsServiceController,
+  DocsServiceControllerMethods,
+} from '@app/common';
 
 @Controller('docs')
-export class DocsController {
+@DocsServiceControllerMethods()
+export class DocsController implements DocsServiceController {
   constructor(private readonly docsService: DocsService) {}
 
   @Get()
@@ -15,8 +20,7 @@ export class DocsController {
     return this.docsService.getAllDocs(getAllDocsDto);
   }
 
-  @EventPattern('create_docs')
-  createDocs(@Payload() createDocDto: CreateDocDto) {
+  createDocs(createDocDto: CreateDocDto) {
     return this.docsService.createDocs(createDocDto);
   }
 }

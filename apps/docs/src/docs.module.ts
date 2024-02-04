@@ -18,7 +18,7 @@ import { DatabaseModule, DocDocument, DocsSchema, HealthModule, LoggerModule } f
       isGlobal: true,
       validationSchema: Joi.object({
         HTTP_PORT: Joi.number().required(),
-        TCP_PORT: Joi.number().required(),
+        DOCS_GRPC_URL: Joi.string().required(),
       }),
     }),
   ],

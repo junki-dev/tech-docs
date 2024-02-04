@@ -1,10 +1,9 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsDefined, IsNotEmpty, ValidateNested } from 'class-validator';
 
-import { CompanyEnumType, DocDto } from '@app/common';
+import { CompanyEnumType, CreateDocsMessage, DocDto } from '@app/common';
 
-export class CreateDocDto {
-  // @IsEnum(CompanyEnum)
+export class CreateDocDto implements CreateDocsMessage {
   @IsNotEmpty()
   company: CompanyEnumType;
 
@@ -12,5 +11,5 @@ export class CreateDocDto {
   @IsDefined({ each: true })
   @ValidateNested({ each: true })
   @Type(() => DocDto)
-  docs: Array<Partial<DocDto>>;
+  docs: DocDto[];
 }

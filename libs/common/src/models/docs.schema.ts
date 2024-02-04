@@ -17,7 +17,7 @@ export class DocDocument extends AbstractDocument {
   imageUri: string;
 
   @Prop()
-  createdAt: Date;
+  createdAt: string;
 
   @Prop()
   originUri: string;

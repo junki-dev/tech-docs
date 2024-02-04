@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package docs;
+
+service DocsService {
+  rpc CreateDocs (CreateDocsMessage) returns (Empty) {}
+}
+
+message Empty {}
+
+message CreateDocsMessage {
+  string company = 1;
+  repeated DocsMessage docs = 2;
+}
+
+message DocsMessage {
+  string title = 1;
+  string createdAt = 2;
+  string originUri = 3;
+  optional string imageUri = 4;
+}

@@ -1,7 +1,9 @@
 import { Type } from 'class-transformer';
 import { IsDate, IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
 
-export class DocDto {
+import { DocsMessage } from '@app/common/types';
+
+export class DocDto implements DocsMessage {
   @IsString()
   @IsNotEmpty()
   title: string;
@@ -9,7 +11,7 @@ export class DocDto {
   @IsDate()
   @IsNotEmpty()
   @Type(() => Date)
-  createdAt: Date;
+  createdAt: string;
 
   @IsUrl()
   @IsNotEmpty()
