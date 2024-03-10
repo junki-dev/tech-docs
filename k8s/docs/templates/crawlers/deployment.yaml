@@ -15,7 +15,7 @@ spec:
         app: crawlers
     spec:
       containers:
-      - image: asia-northeast3-docker.pkg.dev/tech-docs-408301/crawlers/production
+      - image: 637423341870.dkr.ecr.ap-northeast-2.amazonaws.com/crawlers:latest
         name: crawlers
         env:
           - name: HTTP_PORT
@@ -26,10 +26,8 @@ spec:
             value: 'https://toss.tech'
           - name: INFLEARN_BASE_URI
             value: 'https://tech.inflab.com/posts'
-          - name: DOCS_HOST
-            value: 'docs-tcp'
-          - name: DOCS_PORT
-            value: '8012'
+          - name: DOCS_GRPC_URL
+            value: 'docs:5001'
         ports:
           - containerPort: 8021
 

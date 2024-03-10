@@ -6,10 +6,10 @@ phases:
       - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 637423341870.dkr.ecr.ap-northeast-2.amazonaws.com
   build:
     commands:
-      - docker build -t docs -f Dockerfile ./apps/docs/Dockerfile .
+      - docker build -t docs -f ./apps/docs/Dockerfile .
       - docker tag docs:latest 637423341870.dkr.ecr.ap-northeast-2.amazonaws.com/docs:latest
 
-      - docker build -t crawlers -f Dockerfile ./apps/docs/Dockerfile .
+      - docker build -t crawlers -f ./apps/crawlers/Dockerfile .
       - docker tag crawlers:latest 637423341870.dkr.ecr.ap-northeast-2.amazonaws.com/crawlers:latest
   post_build:
     commands:

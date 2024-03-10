@@ -15,7 +15,7 @@ spec:
         app: docs
     spec:
       containers:
-      - image: asia-northeast3-docker.pkg.dev/tech-docs-408301/docs/production
+      - image: 637423341870.dkr.ecr.ap-northeast-2.amazonaws.com/docs:latest
         name: docs
         env:
           - name: MONGODB_URI
@@ -25,8 +25,8 @@ spec:
                 key: connectionString
           - name: HTTP_PORT
             value: '8011'
-          - name: TCP_PORT
-            value: '8012'
+          - name: DOCS_GRPC_URL
+            value: 'docs:5001'
         ports:
           - containerPort: 8011
           - containerPort: 8012
