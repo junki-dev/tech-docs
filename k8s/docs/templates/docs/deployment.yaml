@@ -26,9 +26,9 @@ spec:
           - name: HTTP_PORT
             value: '8011'
           - name: DOCS_GRPC_URL
-            value: 'docs:5001'
+            value: '0.0.0.0:5001'
         ports:
           - containerPort: 8011
-          - containerPort: 8012
+          - containerPort: 5001
 
 

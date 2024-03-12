@@ -3,13 +3,13 @@ kind: Service
 metadata:
   labels:
     app: docs
-  name: docs-tcp
+  name: docs
 spec:
   ports:
   - name: "tcp"
-    port: 8012
+    port: 5001
     protocol: TCP
-    targetPort: 8012
+    targetPort: 5001
   selector:
     app: docs
   type: ClusterIP
